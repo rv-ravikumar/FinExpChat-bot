@@ -1,0 +1,17 @@
+<div class="chat-container">
+  <div class="chat-window">
+    <div class="chat-messages">
+      <!-- Rendered messages will go here -->
+      <div *ngFor="let message of chatHistory" class="message"
+        [ngClass]="{'user-message': message.type === 'User', 'bot-message': message.type === 'Bot'}">
+        {{ message.type === 'User' ? 'User' : 'Bot' }}: {{ message.message }}
+      </div>
+      <span *ngIf="showloading" class="loadingGif"><img src="\assets\gif\Ellipsis@1x-1.0s-200px-200px.gif" alt=""></span>
+    </div>
+  </div>
+  <div class="chat-input">
+    <input   [(ngModel)]="promt" (keypress)="onKeyPress($event)" type="text" placeholder="Type your message here..."
+      />
+    <button (click)="getResponse($event)">Submit</button>
+  </div>
+</div>
